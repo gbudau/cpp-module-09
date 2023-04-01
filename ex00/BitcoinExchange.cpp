@@ -65,26 +65,15 @@ BitcoinExchange::DataRowPair
 BitcoinExchange::ParseDataRow_(const std::string &line) const {
   std::time_t date;
   float exchange_rate;
-  std::stringstream line_stream(line);
-  std::string field;
-  size_t i = 0;
-  while (std::getline(line_stream, field, ',')) {
-    if (i > 1) {
-      throw std::runtime_error("Error: invalid data file.");
-    }
-    try {
-      if (i == 0) {
-        date = DateToSecondsSinceEpoch_(field);
-      }
-      if (i == 1) {
-        exchange_rate = ParseFloat_(field);
-      }
-    } catch (const std::exception &) {
-      throw std::runtime_error("Error: invalid data file.");
-    }
-    i++;
+
+  const size_t date_end = line.find(',');
+  if (date_end == std::string::npos) {
+    throw std::runtime_error("Error: invalid data file.");
   }
-  if (i != 2) {
+  try {
+    date = DateToSecondsSinceEpoch_(line.substr(0, date_end));
+    exchange_rate = ParseFloat_(line.substr(date_end + 1));
+  } catch (const std::exception &) {
     throw std::runtime_error("Error: invalid data file.");
   }
   return std::make_pair(date, exchange_rate);
