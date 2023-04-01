@@ -134,13 +134,6 @@ float BitcoinExchange::ParseFloat_(const std::string &str) const {
 }
 
 float BitcoinExchange::GetExchangeRate_(const std::time_t &date) const {
-  try {
-    return database_.at(date);
-  } catch (const std::exception &) {
-    BitcoinExchange::Database::const_iterator it = database_.lower_bound(date);
-    if (it != database_.end()) {
-      it--;
-    }
-    return it != database_.end() ? it->second : 0;
-  }
+  BitcoinExchange::Database::const_iterator it = database_.lower_bound(date);
+  return it != database_.end() ? it->second : 0;
 }
