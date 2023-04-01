@@ -84,6 +84,9 @@ BitcoinExchange::ParseDataRow_(const std::string &line) const {
     }
     i++;
   }
+  if (i != 2) {
+    throw std::runtime_error("Error: invalid data file.");
+  }
   return std::make_pair(date, exchange_rate);
 }
 
