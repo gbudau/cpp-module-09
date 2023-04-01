@@ -10,10 +10,8 @@
 
 class BitcoinExchange {
 private:
-  typedef std::time_t DateSecondsSinceEpoch;
-  typedef float BitcoinPrice;
-  typedef std::map<DateSecondsSinceEpoch, BitcoinPrice> Database;
-  typedef std::pair<DateSecondsSinceEpoch, BitcoinPrice> DataRowPair;
+  typedef std::map<std::time_t, float, std::greater<std::time_t>> Database;
+  typedef std::pair<std::time_t, float> DataRowPair;
   Database database_;
   DataRowPair ParseDataRow_(const std::string &line) const;
   void ParseInputRow_(const std::string &line) const;
