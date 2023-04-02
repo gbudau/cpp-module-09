@@ -5,8 +5,10 @@
 #define DATASET "data.csv"
 
 #include <ctime>
+#include <functional>
 #include <map>
 #include <string>
+#include <utility>
 
 class BitcoinExchange {
 private:
@@ -20,7 +22,7 @@ private:
   float GetExchangeRate_(const std::time_t &date) const;
 
 public:
-  BitcoinExchange(const std::string &database_path = DATASET);
+  explicit BitcoinExchange(const std::string &database_path = DATASET);
   BitcoinExchange(BitcoinExchange const &src);
   ~BitcoinExchange();
   BitcoinExchange &operator=(BitcoinExchange const &rhs);
