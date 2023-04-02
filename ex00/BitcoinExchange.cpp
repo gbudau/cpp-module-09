@@ -15,7 +15,6 @@ BitcoinExchange::BitcoinExchange(const std::string &database_path) {
   std::string line;
   std::getline(file_stream, line);
   if (line != "date,exchange_rate") {
-
     throw std::runtime_error("Error: invalid data file.");
   }
 
@@ -99,16 +98,15 @@ void BitcoinExchange::ParseInputRow_(const std::string &line) const {
     std::cout << "Error: bad input => " << line << '\n';
     return;
   }
-  if (bitcoins < 0) {
+  if (bitcoins <= 0) {
     std::cout << "Error: not a positive number.\n";
     return;
   }
-  if (bitcoins > 1000) {
+  if (bitcoins >= 1000) {
     std::cout << "Error: too large a number.\n";
     return;
   }
-  const float exchange_rate = GetExchangeRate_(date);
-  const float result = exchange_rate * bitcoins;
+  const float result = bitcoins * GetExchangeRate_(date);
   std::cout << date_str << " => " << bitcoins << " = " << result << '\n';
 }
 
