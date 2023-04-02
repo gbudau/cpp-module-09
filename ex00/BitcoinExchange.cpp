@@ -91,7 +91,8 @@ void BitcoinExchange::ParseInputRow_(const std::string &line) const {
     return;
   }
   try {
-    date = DateToSecondsSinceEpoch_(line.substr(0, date_end));
+    date_str = line.substr(0, date_end);
+    date = DateToSecondsSinceEpoch_(date_str);
     bitcoins = ParseFloat_(line.substr(date_end + delimiter.size()));
   } catch (const std::exception &) {
     std::cout << "Error: bad input => " << line << '\n';
