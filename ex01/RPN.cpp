@@ -10,7 +10,7 @@ RPN::~RPN() {}
 
 RPN &RPN::operator=(RPN const &) { return *this; }
 
-double RPN::calculate(const std::string &expression) const {
+double RPN::CalculateExpression(const std::string &expression) const {
   std::stack<double> stack;
   std::stringstream stream(expression);
   std::string token;

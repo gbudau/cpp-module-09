@@ -1,17 +1,17 @@
 NAME = PmergeMe
 CPPFLAGS = -Wall -Werror -Wextra
-CXX = clang++
+CXX = c++
 
 OBJ = main.o PmergeMe.o
-DEPS = PmergeMe.hpp
+DEPS = algorithm.hpp PmergeMe.hpp
 
-%.o: %.cpp
+%.o: %.cpp $(DEPS)
 	$(CXX) $(CPPFLAGS) -c -o $@ $<
 
 .PHONY: all
 all: $(NAME)
 
-$(NAME): $(OBJ) $(DEPS)
+$(NAME): $(OBJ)
 	$(CXX) $(CPPFLAGS) $(OBJ) -o $(NAME)
 
 .PHONY: clean

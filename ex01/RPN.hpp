@@ -16,7 +16,7 @@ public:
   RPN(RPN const &src);
   ~RPN();
   RPN &operator=(RPN const &rhs);
-  double calculate(const std::string &expression) const;
+  double CalculateExpression(const std::string &expression) const;
 };
 
 #endif // RPN_HPP_
