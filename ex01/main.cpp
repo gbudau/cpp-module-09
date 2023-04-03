@@ -8,7 +8,7 @@ int main(int argc, char **argv) {
   }
   try {
     RPN rpn;
-    std::cout << rpn.calculate(argv[1]) << '\n';
+    std::cout << rpn.CalculateExpression(argv[1]) << '\n';
   } catch (const std::exception &) {
     std::cout << "Error\n";
     return 1;
