@@ -6,10 +6,10 @@
 
 const std::ptrdiff_t INSERTION_SORT_THRESHOLD = 10;
 
-template <class RanIt> void insertion_sort(RanIt begin, RanIt end) {
-  for (RanIt i = begin; i != end; ++i) {
-    typename std::iterator_traits<RanIt>::value_type key = *i;
-    RanIt j = i;
+template <class RandIt> void insertion_sort(RandIt begin, RandIt end) {
+  for (RandIt i = begin; i != end; ++i) {
+    typename std::iterator_traits<RandIt>::value_type key = *i;
+    RandIt j = i;
 
     while (j != begin && *(j - 1) > key) {
       *j = *(j - 1);
@@ -19,8 +19,8 @@ template <class RanIt> void insertion_sort(RanIt begin, RanIt end) {
   }
 }
 
-template <class RanIt> void merge_insert_sort(RanIt begin, RanIt end) {
-  typename std::iterator_traits<RanIt>::difference_type length = end - begin;
+template <class RandIt> void merge_insert_sort(RandIt begin, RandIt end) {
+  typename std::iterator_traits<RandIt>::difference_type length = end - begin;
 
   if (length < 2) {
     return;
@@ -29,7 +29,7 @@ template <class RanIt> void merge_insert_sort(RanIt begin, RanIt end) {
   if (length <= INSERTION_SORT_THRESHOLD) {
     insertion_sort(begin, end);
   } else {
-    RanIt middle = begin + length / 2;
+    RandIt middle = begin + length / 2;
 
     merge_insert_sort(begin, middle);
     merge_insert_sort(middle, end);
