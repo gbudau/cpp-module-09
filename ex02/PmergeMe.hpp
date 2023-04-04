@@ -7,6 +7,7 @@
 #include <sstream>
 #include <string>
 #include <sys/time.h>
+#include <vector>
 
 class PmergeMe {
 private:
@@ -42,13 +43,16 @@ inline std::string PmergeMe::ContainerItems(const Container &c) const {
 
 template <class Container>
 inline long double PmergeMe::MergeInsertSort(Container &c) const {
-  struct timeval start_time, end_time;
+  timespec start_time, end_time;
 
-  gettimeofday(&start_time, NULL);
+  clock_gettime(CLOCK_MONOTONIC, &start_time);
   merge_insert_sort(c.begin(), c.end());
-  gettimeofday(&end_time, NULL);
-  return end_time.tv_sec * 1e6L + end_time.tv_usec -
-         (start_time.tv_sec * 1e6L + start_time.tv_usec);
+  clock_gettime(CLOCK_MONOTONIC, &end_time);
+
+  //  Return execution time in microseconds
+  return (end_time.tv_sec * 1e9L + end_time.tv_nsec -
+          (start_time.tv_sec * 1e9L + start_time.tv_nsec)) /
+         1000;
 }
 
 template <class ContArgs, class Cont1, class Cont2>
