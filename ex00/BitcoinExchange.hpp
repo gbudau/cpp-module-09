@@ -12,7 +12,7 @@
 
 class BitcoinExchange {
 private:
-  typedef std::map<std::time_t, float, std::greater<std::time_t>> Database;
+  typedef std::map<std::time_t, float, std::greater<std::time_t> > Database;
   typedef std::pair<std::time_t, float> DataRowPair;
   Database database_;
   DataRowPair ParseDataRow_(const std::string &line) const;
