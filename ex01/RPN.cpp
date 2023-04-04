@@ -49,14 +49,14 @@ double RPN::CalculateExpression(const std::string &expression) const {
   return stack.top();
 }
 
-double RPN::ParseNumber_(const std::string &token) const {
-  double d;
+int RPN::ParseNumber_(const std::string &token) const {
+  int n;
   std::stringstream stream(token);
-  stream >> d;
+  stream >> n;
   if (!stream.eof() || stream.fail()) {
     throw std::runtime_error("Error: invalid string.");
   }
-  return d;
+  return n;
 }
 
 RPN::NumbersPair RPN::GetNumbers_(std::stack<double> *s) const {

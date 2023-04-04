@@ -8,7 +8,7 @@
 class RPN {
 private:
   typedef std::pair<double, double> NumbersPair;
-  double ParseNumber_(const std::string &token) const;
+  int ParseNumber_(const std::string &token) const;
   NumbersPair GetNumbers_(std::stack<double> *s) const;
 
 public:
