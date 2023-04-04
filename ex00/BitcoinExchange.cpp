@@ -20,6 +20,9 @@ BitcoinExchange::BitcoinExchange(const std::string &database_path) {
 
   while (std::getline(file_stream, line)) {
     DataRowPair row_pair = ParseDataRow_(line);
+    if (row_pair.second < 0) {
+      throw std::runtime_error("Error: invalid data file.");
+    }
     database_[row_pair.first] = row_pair.second;
   }
 }
