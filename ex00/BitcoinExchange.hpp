@@ -1,7 +1,6 @@
 #ifndef BITCOIN_EXCHANGE_HPP_
 #define BITCOIN_EXCHANGE_HPP_
 
-#ifndef DATASET
 #define DATASET "data.csv"
 
 #include <ctime>
@@ -30,5 +29,4 @@ public:
   Database GetDatabase() const;
 };
 
-#endif // DATASET
 #endif // BITCOIN_EXCHANGE_HPP_
