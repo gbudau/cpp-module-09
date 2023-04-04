@@ -7,7 +7,7 @@
 #include <time.h>
 
 BitcoinExchange::BitcoinExchange(const std::string &database_path) {
-  std::ifstream file_stream(database_path);
+  std::ifstream file_stream(database_path.c_str());
   if (!file_stream) {
     throw std::runtime_error("Error: could not open file.");
   }
@@ -38,7 +38,7 @@ BitcoinExchange &BitcoinExchange::operator=(BitcoinExchange const &rhs) {
 }
 
 void BitcoinExchange::Exchange(std::string input_path) const {
-  std::ifstream file_stream(input_path);
+  std::ifstream file_stream(input_path.c_str());
   if (!file_stream) {
     throw std::runtime_error("Error: could not open file.");
   }
